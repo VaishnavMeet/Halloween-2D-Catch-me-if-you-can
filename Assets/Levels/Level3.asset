@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   playerPosition: {x: 0.24, y: 3.689, z: 0}
+  playerRotation: {x: 0, y: 0, z: 0}
   enemyPositions: {x: -0.736, y: 2.688, z: 0}
   gridPosition: {x: 0, y: 0, z: 0}
   bronzePositions: {x: -1.24, y: -2.21, z: 0}
   silverPositions: {x: 4.27, y: -2.25, z: 0}
   goldPositions: {x: 3.74, y: 0.27, z: 0}
   winBoxPosition: {x: 6.77, y: -3.251, z: 0}
-  gridPrefab: {fileID: 380882010574692761, guid: de563401e06787f45a772599e1580793, type: 3}
+  gridPrefab: {fileID: 380882010574692761, guid: 3d878932c0732e1478196a2b8d1147a5, type: 3}
   levelNo: 3
   isLevelCompleted: 0
+  waitForSecond: 0
+  enemySpeed: 0

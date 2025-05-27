@@ -15,7 +15,7 @@ public class EnemyFollow : MonoBehaviour
     public Animator playerAnimator;
     public AudioSource audioSource;
     public AudioClip kickSound;
-    public int waitForSecond=2;
+    public float waitForSecond=2;
     public float enemySpeed;
 
 

@@ -20,6 +20,6 @@ public class LevelData : ScriptableObject
     [Header("Level Status")]
     public int levelNo;
     public bool isLevelCompleted;
-    public int waitForSecond;
+    public float waitForSecond;
     public float enemySpeed;
 }

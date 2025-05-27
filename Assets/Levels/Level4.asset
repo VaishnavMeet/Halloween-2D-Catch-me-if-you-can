@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2780230f45b5f488dceeb9d3df2188, type: 3}
   m_Name: Level4
   m_EditorClassIdentifier: 
-  playerPosition: {x: 0.24, y: 3.689, z: 0}
-  enemyPositions: {x: -0.736, y: 2.688, z: 0}
+  playerPosition: {x: 1.2494202, y: 2.6932428, z: 0}
+  playerRotation: {x: 0, y: 0, z: 0}
+  enemyPositions: {x: -0.2556521, y: -0.33221793, z: 0}
   gridPosition: {x: 0, y: 0, z: 0}
-  bronzePositions: {x: -1.24, y: -2.21, z: 0}
-  silverPositions: {x: 4.27, y: -2.25, z: 0}
-  goldPositions: {x: 3.74, y: 0.27, z: 0}
-  winBoxPosition: {x: 6.77, y: -3.251, z: 0}
-  gridPrefab: {fileID: 380882010574692761, guid: 3d878932c0732e1478196a2b8d1147a5, type: 3}
+  bronzePositions: {x: -1.2658386, y: -1.2505692, z: 0}
+  silverPositions: {x: 4.2442703, y: -0.204669, z: 0}
+  goldPositions: {x: 5.749913, y: 2.748296, z: 0}
+  winBoxPosition: {x: 6.2562485, y: -2.2155764, z: 0}
+  gridPrefab: {fileID: 380882010574692761, guid: de563401e06787f45a772599e1580793, type: 3}
   levelNo: 4
   isLevelCompleted: 0
+  waitForSecond: 4
+  enemySpeed: 1.5
