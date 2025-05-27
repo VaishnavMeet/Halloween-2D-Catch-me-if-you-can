@@ -837,7 +837,7 @@ Transform:
   m_GameObject: {fileID: 1065141365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 2.73, z: 0}
+  m_LocalPosition: {x: -0.736, y: 2.748, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -984,7 +984,7 @@ MonoBehaviour:
   orientation: 1
   enableRotation: 0
   rotationSpeed: 10
-  interpolatePathSwitches: 1
+  interpolatePathSwitches: 0
   switchPathInterpolationSpeed: 1
   targetCompatibility: {fileID: 0}
   repathRateCompatibility: NaN
