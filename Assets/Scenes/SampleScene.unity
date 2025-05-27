@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b6432eb891656448f9d7385029c9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 11400000, guid: f5075ddffa75af441a57b92ca040f3b4, type: 2}
+  levelData: {fileID: 11400000, guid: 87d4748e9bd83834fbcbfc70bef2bd02, type: 2}
   bronzePrefab: {fileID: 5704087746393849095, guid: 592ba145335c0de429c6e1abee32659a, type: 3}
   silverPrefab: {fileID: 6534174658827335188, guid: c8313341f97fdc54e92c0dbfaf0dfb5c, type: 3}
   goldPrefab: {fileID: 8912900341996219805, guid: d7db6743fff79a547817d9e0367f37d1, type: 3}
