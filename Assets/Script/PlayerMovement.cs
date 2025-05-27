@@ -23,7 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private bool rotationStarted = false;
 
     private Animator animator;
-    AudioSource audioSource;
+
+
+    [Header("Audio Setup")]
+    public AudioSource audioSource;
+    public AudioClip keyCollectSound;
+    public AudioClip bounceSound;
 
     void Start()
     {
@@ -60,15 +65,21 @@ public class PlayerMovement : MonoBehaviour
 
     private System.Collections.IEnumerator FadeAndDestroy(GameObject obj)
     {
+        audioSource.PlayOneShot(keyCollectSound);
         SpriteRenderer spriteRenderer=obj.GetComponent<SpriteRenderer>();
         float duration = 0.5f;
         float t = 0f;
         Color originalColor = spriteRenderer.color;
+        Vector3 startPos = obj.transform.position;
+        Vector3 endPos = startPos + new Vector3(0f, 1f, 0f); // Move 1 unit upward
 
         while (t < duration)
         {
             float alpha = Mathf.Lerp(1f, 0f, t / duration);
             spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            obj.transform.position = Vector3.Lerp(startPos, endPos, t / duration); // Move up
+
             t += Time.deltaTime;
             yield return null;
         }
@@ -80,8 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            if (!audioSource.isPlaying)
-                        audioSource.enabled = false;
+            
             DetectSwipe();
         }
         else
@@ -176,7 +186,8 @@ public class PlayerMovement : MonoBehaviour
         if (rotationStarted)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            audioSource.enabled = true;
+            if(!audioSource.isPlaying)
+            audioSource.PlayOneShot(bounceSound) ;
         }
 
         // Stop when close to target

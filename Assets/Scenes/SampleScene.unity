@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 40644716}
   m_Layer: 0
   m_Name: WinBox
-  m_TagString: Untagged
+  m_TagString: Win
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1113,6 +1113,9 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  audioSource: {fileID: 0}
+  keyCollectSound: {fileID: 8300000, guid: 5a8cf1518fad27247a859fb5ad770414, type: 3}
+  bounceSound: {fileID: 8300000, guid: c3019acb7bdf5a24293a795d84bede0c, type: 3}
 --- !u!82 &713307547
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1120,12 +1123,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713307540}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c3019acb7bdf5a24293a795d84bede0c, type: 3}
-  m_Resource: {fileID: 8300000, guid: c3019acb7bdf5a24293a795d84bede0c, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1354,7 +1357,7 @@ GameObject:
   - component: {fileID: 1065141380}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1445,7 +1448,7 @@ Transform:
   m_GameObject: {fileID: 1065141365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.736, y: 2.748, z: 0}
+  m_LocalPosition: {x: -0.736, y: 2.688, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
