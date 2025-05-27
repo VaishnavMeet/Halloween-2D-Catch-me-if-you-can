@@ -12,18 +12,20 @@ public class EnemyFollow : MonoBehaviour
     private Animator animator;
     private Coroutine setTargetCoroutine;
     public Animator playerAnimator;
+    public AudioSource audioSource;
+    public AudioClip kickSound;
     void Awake()
     {
         destinationSetter = GetComponent<AIDestinationSetter>();
         aiLerp = GetComponent<AILerp>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Trigger entered, starting coroutine");
             playerAnimator=other.gameObject.GetComponent<Animator>();
             if (setTargetCoroutine != null)
                 StopCoroutine(setTargetCoroutine);
@@ -53,7 +55,13 @@ public class EnemyFollow : MonoBehaviour
                 RotateTowardsMovement(0);
                 animator.SetBool("IsAttack", true);
                 animator.SetBool("IsMoving", false);
-                playerAnimator.SetBool("IsHurted", true);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = kickSound;
+                    audioSource.loop = false;
+                    audioSource.Play();
+                }
+
             }
             else
             {
@@ -62,6 +70,10 @@ public class EnemyFollow : MonoBehaviour
                 animator.SetBool("IsAttack", false);
                 animator.SetBool("IsMoving", true);
                 playerAnimator.SetBool("IsHurted", false);
+
+             
+                if (audioSource.isPlaying)
+                    audioSource.Stop();
             }
         }
     }

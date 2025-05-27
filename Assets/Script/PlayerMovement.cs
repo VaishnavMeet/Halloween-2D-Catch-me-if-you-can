@@ -23,10 +23,11 @@ public class PlayerMovement : MonoBehaviour
     private bool rotationStarted = false;
 
     private Animator animator;
-
+    AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         targetPosition = rb.position;
@@ -37,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-           
+            if (!audioSource.isPlaying)
+                        audioSource.enabled = false;
             DetectSwipe();
         }
         else
@@ -124,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
         // Start rotating if close enough
         if (distanceLeft <= rotationTriggerDistance)
         {
+
             animator.SetBool("IsMoving", false);
             rotationStarted = true;
         }
@@ -131,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
         if (rotationStarted)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            audioSource.enabled = true;
         }
 
         // Stop when close to target
