@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -41,12 +42,13 @@ public class GameManager : MonoBehaviour
         
           GameObject enemy=  Instantiate(enemyPrefab, levelData.enemyPositions, Quaternion.identity);
         enemy.GetComponent<EnemyFollow>().waitForSecond = levelData.waitForSecond;
+        enemy.GetComponent<AILerp>().speed = levelData.enemySpeed;
 
         // Instantiate Grid
         Instantiate(levelData.gridPrefab, levelData.gridPosition, Quaternion.identity);
 
         // Instantiate Player
-        Instantiate(playerPrefab, levelData.playerPosition, Quaternion.identity);
+        Instantiate(playerPrefab, levelData.playerPosition, Quaternion.Euler(levelData.playerRotation));
 
         // Instantiate WinBox
         Instantiate(winBoxPrefab, levelData.winBoxPosition, Quaternion.identity);

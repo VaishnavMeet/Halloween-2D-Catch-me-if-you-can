@@ -6,6 +6,7 @@ public class LevelData : ScriptableObject
 {
     [Header("Transforms")]
     public Vector3 playerPosition;
+    public Vector3 playerRotation;
     public Vector3 enemyPositions;
     public Vector3 gridPosition;
     public Vector3 bronzePositions;
@@ -20,4 +21,5 @@ public class LevelData : ScriptableObject
     public int levelNo;
     public bool isLevelCompleted;
     public int waitForSecond;
+    public float enemySpeed;
 }
