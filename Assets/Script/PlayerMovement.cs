@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotationSpeed = 720f; // Degrees per second
     public float rotationTriggerDistance = 1f; // Distance before reaching target to start rotating
+     int health = 15;
+    public bool isHealthReducing=false;
 
     private Vector2 moveDirection = Vector2.zero;
     private bool isMoving = false;
@@ -24,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    [Header("Health Bar")]
+    public Image healthBarImage; // Drag the fill image here in the Inspector
+
 
     [Header("Audio Setup")]
     public AudioSource audioSource;
@@ -39,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
         targetRotation = transform.rotation;
     }
 
+    public void reduceHealth()
+    {
+        if(!isHealthReducing) 
+        StartCoroutine(reduceHelthByOne());
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -59,12 +71,31 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy");
+            
         }
     }
 
-    private System.Collections.IEnumerator FadeAndDestroy(GameObject obj)
+    private IEnumerator reduceHelthByOne()
     {
+        isHealthReducing=true;
+        if (health == 0)
+            Debug.Log("GameOver");
+        else
+        {
+            health--;
+            float fill = health / 15f; 
+            if (healthBarImage != null)
+                healthBarImage.fillAmount = fill;
+        }
+        yield return new WaitForSeconds(0.1f);
+        
+
+        isHealthReducing = false;
+    }
+
+    private IEnumerator FadeAndDestroy(GameObject obj)
+    {
+        obj.GetComponent<BoxCollider2D>().enabled= false;
         audioSource.PlayOneShot(keyCollectSound);
         SpriteRenderer spriteRenderer=obj.GetComponent<SpriteRenderer>();
         float duration = 0.5f;

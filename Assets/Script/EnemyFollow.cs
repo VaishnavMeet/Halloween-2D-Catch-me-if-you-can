@@ -1,6 +1,7 @@
 using UnityEngine;
 using Pathfinding;
 using System.Collections;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(AIDestinationSetter))]
 [RequireComponent(typeof(AILerp))]
@@ -34,6 +35,23 @@ public class EnemyFollow : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("Trigger Stay: " + collision.name);
+            var player = collision.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.reduceHealth();
+            }
+            else
+            {
+                Debug.LogWarning("PlayerMovement not found!");
+            }
+        }
+    }
+
     private IEnumerator SetTargetAfterDelay(Transform target, float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -55,6 +73,8 @@ public class EnemyFollow : MonoBehaviour
                 RotateTowardsMovement(0);
                 animator.SetBool("IsAttack", true);
                 animator.SetBool("IsMoving", false);
+                playerAnimator.SetBool("IsHurted", true);
+
                 if (!audioSource.isPlaying)
                 {
                     audioSource.clip = kickSound;
