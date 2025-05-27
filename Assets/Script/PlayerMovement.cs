@@ -34,6 +34,48 @@ public class PlayerMovement : MonoBehaviour
         targetRotation = transform.rotation;
     }
 
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Win"))
+        {
+           
+        }if (other.CompareTag("Bronze"))
+        {
+            StartCoroutine(FadeAndDestroy(other.gameObject));
+        }
+        if (other.CompareTag("Sliver"))
+        {
+            StartCoroutine(FadeAndDestroy(other.gameObject));
+        }
+        if (other.CompareTag("Gold"))
+        {
+            StartCoroutine(FadeAndDestroy(other.gameObject));
+        }
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy");
+        }
+    }
+
+    private System.Collections.IEnumerator FadeAndDestroy(GameObject obj)
+    {
+        SpriteRenderer spriteRenderer=obj.GetComponent<SpriteRenderer>();
+        float duration = 0.5f;
+        float t = 0f;
+        Color originalColor = spriteRenderer.color;
+
+        while (t < duration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, t / duration);
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(obj);
+    }
+
     void Update()
     {
         if (!isMoving)

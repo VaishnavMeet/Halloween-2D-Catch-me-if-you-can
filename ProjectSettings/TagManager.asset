@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Win
+  - Bronze
+  - Sliver
+  - Gold
   layers:
   - Default
   - TransparentFX
