@@ -15,12 +15,17 @@ public class EnemyFollow : MonoBehaviour
     public Animator playerAnimator;
     public AudioSource audioSource;
     public AudioClip kickSound;
+    public int waitForSecond=2;
+    public float enemySpeed;
+
+
     void Awake()
     {
         destinationSetter = GetComponent<AIDestinationSetter>();
         aiLerp = GetComponent<AILerp>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>(); 
+        audioSource = GetComponent<AudioSource>();
+        aiLerp.speed = enemySpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +36,7 @@ public class EnemyFollow : MonoBehaviour
             if (setTargetCoroutine != null)
                 StopCoroutine(setTargetCoroutine);
 
-            setTargetCoroutine = StartCoroutine(SetTargetAfterDelay(other.transform, 1f));
+            setTargetCoroutine = StartCoroutine(SetTargetAfterDelay(other.transform, waitForSecond));
         }
     }
 
@@ -67,7 +72,7 @@ public class EnemyFollow : MonoBehaviour
         {
             float distanceToTarget = Vector2.Distance(transform.position, destinationSetter.target.position);
 
-            if (distanceToTarget <= 0.3f)
+            if (distanceToTarget <= 0.2f)
             {
                 aiLerp.canMove = false; // Stop moving
                 RotateTowardsMovement(0);

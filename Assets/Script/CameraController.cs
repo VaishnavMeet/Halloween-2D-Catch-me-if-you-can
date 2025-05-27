@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        player= GameObject.FindGameObjectWithTag("Player").transform;
         cam = Camera.main;
     }
 
