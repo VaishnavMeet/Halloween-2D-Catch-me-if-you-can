@@ -23,5 +23,5 @@ MonoBehaviour:
   gridPrefab: {fileID: 380882010574692761, guid: 53d9b4ea2d1cb6b4abdba218f90257f6, type: 3}
   levelNo: 2
   isLevelCompleted: 0
-  waitForSecond: 1
+  waitForSecond: 3
   enemySpeed: 2

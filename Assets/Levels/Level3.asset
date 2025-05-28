@@ -24,4 +24,4 @@ MonoBehaviour:
   levelNo: 3
   isLevelCompleted: 0
   waitForSecond: 3.5
-  enemySpeed: 1.5
+  enemySpeed: 1.2
