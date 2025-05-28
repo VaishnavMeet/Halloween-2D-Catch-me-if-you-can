@@ -13,12 +13,27 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        player= GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
+    private void Update()
+    {
+        if (player == null)
+            FindPlayer();
+
+    }
+    void FindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
+    }
     void LateUpdate()
     {
         if (player == null) return;
+        player= GameObject.FindGameObjectWithTag("Player").transform;
 
         // Check if player is visible on screen
         Vector3 viewportPos = cam.WorldToViewportPoint(player.position);

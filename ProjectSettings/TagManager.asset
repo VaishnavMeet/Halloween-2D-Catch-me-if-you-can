@@ -10,6 +10,7 @@ TagManager:
   - Bronze
   - Sliver
   - Gold
+  - Manager
   layers:
   - Default
   - TransparentFX

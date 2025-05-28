@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   playerPosition: {x: 0.24, y: 3.689, z: 0}
+  playerRotation: {x: 0, y: 0, z: 0}
   enemyPositions: {x: -0.736, y: 2.688, z: 0}
   gridPosition: {x: 0, y: 0, z: 0}
   bronzePositions: {x: -1.24, y: -2.21, z: 0}
@@ -22,3 +23,5 @@ MonoBehaviour:
   gridPrefab: {fileID: 380882010574692761, guid: e6328c2f77785e6468fc2fdb5d2c4604, type: 3}
   levelNo: 1
   isLevelCompleted: 0
+  waitForSecond: 3
+  enemySpeed: 1.5

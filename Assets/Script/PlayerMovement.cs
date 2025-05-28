@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip keyCollectSound;
     public AudioClip bounceSound;
 
+    GameObject gameManager;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         targetPosition = rb.position;
         targetRotation = transform.rotation;
+        gameManager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     public void reduceHealth()
@@ -56,40 +58,41 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Win"))
         {
-           
-        }if (other.CompareTag("Bronze"))
+            StartCoroutine(HandleWin());
+        }
+
+        if (other.CompareTag("Bronze") || other.CompareTag("Sliver") || other.CompareTag("Gold"))
         {
             StartCoroutine(FadeAndDestroy(other.gameObject));
-        }
-        if (other.CompareTag("Sliver"))
-        {
-            StartCoroutine(FadeAndDestroy(other.gameObject));
-        }
-        if (other.CompareTag("Gold"))
-        {
-            StartCoroutine(FadeAndDestroy(other.gameObject));
-        }
-        if (other.CompareTag("Enemy"))
-        {
-            
         }
     }
 
+    private IEnumerator HandleWin()
+    {
+        yield return new WaitForSeconds(1f);
+        gameManager.GetComponent<GameManager>().LoadNextLevel();
+    }
+
+
     private IEnumerator reduceHelthByOne()
     {
-        isHealthReducing=true;
-        if (health == 0)
+        isHealthReducing = true;
+
+        if (health <= 0)
+        {
             Debug.Log("GameOver");
+            yield return new WaitForSeconds(1f);
+            gameManager.GetComponent<GameManager>().RestartLevel();
+        }
         else
         {
             health--;
-            float fill = health / 15f; 
+            float fill = health / 15f;
             if (healthBarImage != null)
                 healthBarImage.fillAmount = fill;
         }
-        yield return new WaitForSeconds(0.1f);
-        
 
+        yield return new WaitForSeconds(0.1f);
         isHealthReducing = false;
     }
 
@@ -217,8 +220,7 @@ public class PlayerMovement : MonoBehaviour
         if (rotationStarted)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            if(!audioSource.isPlaying)
-            audioSource.PlayOneShot(bounceSound) ;
+            
         }
 
         // Stop when close to target
@@ -226,6 +228,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.position = targetPosition;
             transform.rotation = targetRotation;
+            if (!audioSource.isPlaying)
+                audioSource.PlayOneShot(bounceSound);
             isMoving = false;
         }
     }
